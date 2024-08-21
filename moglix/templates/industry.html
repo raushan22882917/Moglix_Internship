@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSV File Upload</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            padding-top: 70px;
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: auto;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        form {
+            margin-top: 30px;
+        }
+
+        .result {
+            margin-top: 20px;
+        }
+
+        .footer {
+            background-color: #343a40;
+            color: #fff;
+            padding: 20px 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .social-icons {
+            text-align: center;
+        }
+
+        .social-icons a {
+            color: #fff;
+            font-size: 24px;
+            margin: 0 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="{{ url_for('static', filename='image/logo.png') }}" alt="Moglix Logo" height="40">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Home</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Service</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1>industy buying Product Scraper</h1>
+        <!-- 10-point instructions -->
+        <ol>
+            <li>Visit the webpage and click "Upload CSV File".</li>
+            <li>Select the CSV file with industy buying product links.</li>
+            <li>Submit the form and wait for processing.</li>
+            <li>View success message with download link or error notification.</li>
+            <li>Click the download link to get the CSV file.</li>
+            <li>Open the CSV file in spreadsheet software.</li>
+            <li>Review extracted product details.</li>
+            <li>Repeat the process for additional CSV files.</li>
+            <li>Contact developer for assistance or feedback.</li>
+            <li>Enjoy hassle-free product data extraction from industy buying.</li>
+        </ol>
+
+        <!-- Upload form -->
+        {% if file_path %}
+        <h2>Scraping Data...</h2>
+        <form action="/scrape" method="post">
+            <input type="hidden" name="file_path" value="{{ file_path }}">
+            <button type="submit" class="btn btn-primary">Scrape</button>
+        </form>
+        {% else %}
+        <h2>Upload CSV File</h2>
+        <form action="/industry" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="csv_file">Upload CSV File:</label>
+                <input type="file" name="file" id="csv_file" class="form-control" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Upload</button>
+        </form>
+        {% endif %}
+
+        <!-- Result section -->
+        <div class="result">
+            {% if file_link %}
+            <div class="alert alert-success mt-4" role="alert">
+                Scraping complete! <a href="{{ file_link }}" class="alert-link">Download the scraped data</a>.
+            </div>
+            {% endif %}
+            {% if error %}
+            <div class="alert alert-danger mt-4" role="alert">
+                An error occurred: {{ error }}
+            </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS, Popper.js, and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>

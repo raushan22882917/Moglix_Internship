@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Brand Availability Checker</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+
+    <style>
+
+        h1,
+        h2 {
+            color: #333;
+            text-align: center;
+        }
+
+        .containers {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .instructions ol {
+            list-style-type: decimal;
+            padding-left: 20px;
+        }
+
+        .instructions li {
+            margin-bottom: 10px;
+        }
+
+        form {
+            margin-top: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        input[type="file"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        button[type="submit"] {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        .result {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .result h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .result a {
+            display: block;
+            text-align: center;
+            margin-top: 10px;
+            text-decoration: none;
+            color: #007bff;
+        }
+
+        .result a:hover {
+            text-decoration: underline;
+        }
+
+        .footer {
+            background-color: #343a40;
+            color: #fff;
+            padding: 20px 0;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .social-icons {
+            text-align: center;
+        }
+
+        .social-icons a {
+            color: #fff;
+            font-size: 24px;
+            margin: 0 10px;
+        }
+    </style>
+    <style>
+        /* Custom CSS for a colorful and vibrant look */
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f7f7f7;
+    color: #333;
+}
+
+.navbar {
+    background: linear-gradient(45deg, #6a11cb, #2575fc);
+}
+
+.nav-link {
+    color: #fff !important;
+    font-weight: bold;
+}
+
+.nav-link:hover {
+    color: #ffd700 !important;
+}
+
+h1 {
+    color: #6a11cb;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    color: #6a11cb;
+    font-weight: bold;
+}
+
+.btn-primary {
+    background-color: #6a11cb;
+    border-color: #6a11cb;
+}
+
+.btn-primary:hover {
+    background-color: #2575fc;
+    border-color: #2575fc;
+}
+
+.alert-info {
+    background-color: #e1f5fe;
+    border-color: #b3e5fc;
+    color: #01579b;
+}
+
+.instructions {
+    background-color: #ffffff;
+    border: 1px solid #d1d1d1;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.instructions h2 {
+    color: #6a11cb;
+    font-size: 1.8rem;
+}
+
+.instructions ol {
+    padding-left: 20px;
+}
+
+.instructions li {
+    margin-bottom: 10px;
+}
+
+.footer {
+    background: linear-gradient(45deg, #2575fc, #6a11cb);
+}
+
+.footer p {
+    margin: 0;
+}
+
+.social-icons a {
+    color: #fff;
+    font-size: 1.5rem;
+}
+
+.social-icons a:hover {
+    color: #ffd700;
+}
+
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="{{ url_for('static', filename='image/logo.png') }}" alt="Moglix Logo" height="40">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Service</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Signup</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <h1>Brand Availability Checker</h1>
+
+    <!-- Container for Instructions, Form, and Results -->
+    <div class="containers">
+        <form method="post" enctype="multipart/form-data">
+            <label for="csv_file">Upload CSV File:</label>
+            <input type="file" id="csv_file" name="csv_file" accept=".csv" required>
+            <button type="submit" class="btn btn-primary btn-block">Check Availability</button>
+        </form>
+        <!-- Instructions -->
+        <div class="instructions">
+            <h2>Instructions:</h2>
+            <ol>
+                <li>Upload CSV file with brand names.</li>
+                <li>Check brand availability on e-commerce platforms.</li>
+                <li>Download CSV file with availability results.</li>
+                <li>Display message when results are ready.</li>
+                <li>Each result row includes brand name, site, link, availability.</li>
+                <li>Repeat process by uploading new CSV files.</li>
+                <li>Feedback and support options available.</li>
+                <li>CSV files must have "Brand Name" column.</li>
+                <li>Results accuracy may vary based on web scraping.</li>
+                <li>Simple and user-friendly interface for easy navigation.</li>
+            </ol>
+        </div>
+
+        <!-- Results Display -->
+        {% if availability %}
+        <div class="result">
+            <h2>{{ availability }}</h2>
+            {% if csv_file %}
+            <h2>Download Results:</h2>
+            <a href="{{ csv_file }}">Download CSV</a>
+            {% endif %}
+        </div>
+        {% endif %}
+    </div>
+    <footer class="footer">
+        <div class="container">
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+            </div>
+        </div>
+    </footer>
+    <!-- Bootstrap JS, Popper.js, and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

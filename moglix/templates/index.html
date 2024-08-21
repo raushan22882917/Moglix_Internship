@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moglix</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+        }
+
+        nav {
+            background-color: #333;
+            color: #fff;
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin-right: 10px;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .placeholder {
+            margin-bottom: 20px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #fff;
+        }
+
+        .feature-card {
+            margin-bottom: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: box-shadow 0.3s ease-in-out;
+            overflow: hidden;
+        }
+
+        .feature-card:hover {
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .feature-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .feature-card .card-body {
+            padding: 20px;
+        }
+
+        
+        .footer {
+            background-color: #343a40;
+            color: #fff;
+            padding: 20px 0;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .social-icons {
+            text-align: center;
+        }
+
+        .social-icons a {
+            color: #fff;
+            font-size: 24px;
+            margin: 0 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="{{ url_for('static', filename='image/logo.png') }}" alt="Moglix Logo" height="40">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Signup</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="feature-card">
+                    <img src="{{url_for('static', filename='image/background.jpg')}}" class="card-img-top" alt="Background Remove">
+                    <div class="card-body">
+                        <h5 class="card-title">Background Remove</h5>
+                        <p class="card-text">Remove backgrounds from images with ease.</p>
+                        <a href="{{url_for('index')}}" class="btn btn-primary">start</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="feature-card">
+                    <img src="{{url_for('static', filename='image/pdf.webp')}}" class="card-img-top" alt="PDF to Excel">
+                    <div class="card-body">
+                        <h5 class="card-title">PDF to Table </h5>
+                        <p class="card-text">Extract Table from Pdf</p>
+                        <a href="{{url_for('upload_file')}}" class="btn btn-primary">start</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="feature-card">
+                    <img src="{{url_for('static', filename='image/industry.jpg')}}" class="card-img-top"
+                        alt="Scraping Industry Binging">
+                    <div class="card-body">
+                        <h5 class="card-title">Scraping Industry Binging</h5>
+                        <p class="card-text">Scrape data from Industry Binging platform.</p>
+                        <a href="{{url_for('industry')}}" class="btn btn-primary">start</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="feature-card">
+                    <img src="{{url_for('static', filename='image/brand.png')}}" class="card-img-top"
+                        alt="Brand Availability Check">
+                    <div class="card-body">
+                        <h5 class="card-title">Brand Availability Check</h5>
+                        <p class="card-text">Check the availability of brands.</p>
+                        <a href="{{url_for('csvfile')}}" class="btn btn-primary">start</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="feature-card">
+                    <img src="{{url_for('static', filename='image/splitter.png')}}" class="card-img-top"
+                        alt="Brand Availability Check">
+                    <div class="card-body">
+                        <h5 class="card-title">Pdf Splitter</h5>
+                        <p class="card-text">Splitter pdf according to choice.</p>
+                        <a href="{{url_for('pdfspliter')}}" class="btn btn-primary">start</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Add more feature cards as needed -->
+    </div>
+</div>
+
+<footer class="footer">
+    <div class="container">
+        <div class="social-icons">
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-linkedin"></i></a>
+        </div>
+    </div>
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>
+

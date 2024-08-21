@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF Splitter</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    
+    <style>
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f7f7f7;
+    color: #333;
+}
+
+.navbar {
+    background: linear-gradient(45deg, #6a11cb, #2575fc);
+}
+
+.nav-link {
+    color: #fff !important;
+    font-weight: bold;
+}
+
+.nav-link:hover {
+    color: #ffd700 !important;
+}
+
+h1 {
+    color: #6a11cb;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    color: #6a11cb;
+    font-weight: bold;
+}
+
+.btn-primary {
+    background-color: #6a11cb;
+    border-color: #6a11cb;
+}
+
+.btn-primary:hover {
+    background-color: #2575fc;
+    border-color: #2575fc;
+}
+
+.alert-info {
+    background-color: #e1f5fe;
+    border-color: #b3e5fc;
+    color: #01579b;
+}
+
+.instructions {
+    background-color: #ffffff;
+    border: 1px solid #d1d1d1;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.instructions h2 {
+    color: #6a11cb;
+    font-size: 1.8rem;
+}
+
+.instructions ol {
+    padding-left: 20px;
+}
+
+.instructions li {
+    margin-bottom: 10px;
+}
+
+.footer {
+    background: linear-gradient(45deg, #2575fc, #6a11cb);
+}
+
+.footer p {
+    margin: 0;
+}
+
+.social-icons a {
+    color: #fff;
+    font-size: 1.5rem;
+}
+
+.social-icons a:hover {
+    color: #ffd700;
+}
+
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="{{ url_for('static', filename='image/logo.png') }}" alt="Moglix Logo" height="40">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Signup</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-5" style="width:800px;">
+        
+        <h1 class="text-center">PDF Splitter</h1>
+        <div style="display:flex; justify-content:center">
+        <div>
+            <form action="/split" method="post" enctype="multipart/form-data" class="my-4">
+                <div class="form-group">
+                    <label for="pdfFile">Select PDF File:</label>
+                    <input type="file" class="form-control-file" id="pdfFile" name="file" required>
+                </div>
+                <div class="form-group">
+                    <label for="startPage">Start Page:</label>
+                    <input type="number" class="form-control" id="startPage" name="start_page" required>
+                </div>
+                <div class="form-group">
+                    <label for="endPage">End Page:</label>
+                    <input type="number" class="form-control" id="endPage" name="end_page" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Split PDF</button>
+            </form>
+        </div>
+        <div class="instructions mt-4" style="margin-left: 50px;">
+            <h2>Instructions:</h2>
+            <ol>
+                <li>Upload a PDF file to split.</li>
+                <li>Specify the start and end page numbers for splitting.</li>
+                <li>Click "Split PDF" to split the PDF into individual pages.</li>
+                <li>Download the split PDF files.</li>
+            </ol>
+        </div>
+
+    </div>
+
+        <!-- Placeholder for feedback messages -->
+        {% if message %}
+        <div class="alert alert-info" role="alert">
+            {{ message }}
+        </div>
+        {% endif %}
+
+       
+    </div>
+
+    <footer class="footer bg-dark text-white mt-5 py-4">
+        <div class="container text-center">
+            <div class="social-icons mb-3">
+                <a href="#" class="text-white mr-2"><i class="fab fa-facebook"></i></a>
+                <a href="#" class="text-white mr-2"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="text-white mr-2"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="text-white mr-2"><i class="fab fa-linkedin"></i></a>
+            </div>
+            <p>&copy; 2024 Moglix. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS, Popper.js, and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

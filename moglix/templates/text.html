@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Removal</title>
+</head>
+<body>
+    <h1>Remove Text from Image</h1>
+    <form action="/upload" method="post" enctype="multipart/form-data">
+        <input type="file" name="image" accept="image/*">
+        <button type="submit">Upload</button>
+    </form>
+    <div>
+        {% if image %}
+            <h2>Processed Image</h2>
+            <img src="{{ image }}" alt="Processed Image">
+        {% endif %}
+    </div>
+</body>
+</html>
